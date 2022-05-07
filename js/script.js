@@ -179,3 +179,24 @@ function agrementChecker (event) {
 }
 
 
+
+
+
+const popupDiscription_container = document.querySelector(".popupDiscription-container");
+const popupDiscription_content = document.querySelector(".popupDiscription-content");
+// const mainContent = document.querySelector(".mainContent");
+
+function discriptionUp() {
+    popupDiscription_container.classList.add("popupDiscription-container-active");
+    popupDiscription_container.addEventListener("click", discriptionDown, { once: true });
+    mainContent.classList.add("mainContent-freezed");
+}
+
+function discriptionDown() {
+    popupDiscription_container.classList.remove("popupDiscription-container-active");
+    mainContent.classList.remove("mainContent-freezed");
+}
+
+discriptionUp();
+
+
