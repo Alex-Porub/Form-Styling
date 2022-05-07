@@ -124,7 +124,7 @@ body {
 }
 
 .formWrapper {
-    background-color: #0000003b;    
+    background-color: #0000003b;
     transition: 0.7s;
     opacity: 0;
     z-index: 20;
@@ -194,7 +194,6 @@ body {
     top: 5px;
     width: 35px;
     height: 35px;
-    /* background-color: #7a956b; */
     background-color: #7a956b;
     border-radius: 3px;
     cursor: pointer;
@@ -205,9 +204,8 @@ body {
 }
 
 .closeForm-button:hover {
-    background-color: rgb(87, 104, 76); 
+    background-color: rgb(87, 104, 76);
 }
-
 
 .closeForm-button::before {
     content: "";
@@ -565,111 +563,117 @@ textarea.form__input {
 .mainContent-freezed {
     transition: 0.6s;
     overflow: hidden;
-	pointer-events: none;
-	overflow: hidden;
-	filter: blur(3px) contrast(0.8) brightness(1.1) grayscale(0.7);
+    pointer-events: none;
+    overflow: hidden;
+    filter: blur(3px) contrast(0.8) brightness(1.1) grayscale(0.7);
 }
 
 .popupDiscription-container {
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: #0000005e;
-	display: flex;
-	align-items: baseline;
-	justify-content: center;
-	padding: 30px 8px;
-	visibility: hidden;
-	opacity: 0;
-	transition: 0.6s;
-	z-index: 5;
-	overflow: auto;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0000005e;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    padding: 30px 8px;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.6s;
+    z-index: 5;
+    overflow: auto;
 }
 
 .popupDiscription-container-active {
-	visibility: visible;
-	opacity: 1;
+    visibility: visible;
+    opacity: 1;
 }
 
 .popupDiscription-content {
-	max-width: 500px;
-	margin: 0 auto;
-	min-height: 300px;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: space-between;
-	box-sizing: content-box;
-	background-color: #ffffff;
-	box-shadow: 0px 4px 18px 2px rgba(0, 0, 0, 0.45);
-	transform: translateY(calc(-100% - 20px));
-	position: relative;
-	transition: 0.5s;
+    max-width: 500px;
+    margin: 0 auto;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: content-box;
+    background-color: #ffffff;
+    box-shadow: 0px 4px 18px 2px rgba(0, 0, 0, 0.45);
+    transform: translateY(calc(-100% - 20px));
+    position: relative;
+    transition: 0.5s;
 }
 
 .popupDiscription-content p {
-	padding: 30px 7%;
-	margin: 0;
-	color: black;
-	font-size: 1.4rem;
-	font-weight: 600;
-	line-height: 1.26em;
+    padding: 30px 7%;
+    margin: 0;
+    color: black;
+    font-size: 1.4rem;
+    font-weight: 800;
+    line-height: 1.3em;
+}
+
+.popupDiscription-content p strong {
+    font-style: italic;
+    color: #4e413b;
+    font-weight: 800;
 }
 
 .popupDiscription-container-active .popupDiscription-content {
-	transform: none;
+    transform: none;
 }
 
 .popupDiscription-content__buttonClose {
-	position: absolute;
-	right: 5px;
-	top: 5px;
-	width: 35px;
-	height: 35px;
-	background-color: #1b15157e;
-	border-radius: 30%;
-	cursor: pointer;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    width: 35px;
+    height: 35px;
+    background-color: #1b15157e;
+    border-radius: 30%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 1px 5px 1px rgba(0, 0, 0, 0.4);
 }
 
 .popupDiscription-content__buttonClose:hover {
-	background-color: #1b1515bb;
+    background-color: #1b1515bb;
 }
 
 .popupDiscription-content__buttonClose::before {
-	content: "";
-	position: absolute;
-	width: 80%;
-	height: 4px;
-	border-radius: 2px;
-	background-color: white;
-	transform: rotate(45deg);
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: white;
+    transform: rotate(45deg);
 }
 
 .popupDiscription-content__buttonClose::after {
-	content: "";
-	position: absolute;
-	width: 80%;
-	height: 4px;
-	border-radius: 2px;
-	background-color: white;
-	transform: rotate(-45deg);
+    content: "";
+    position: absolute;
+    width: 80%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: white;
+    transform: rotate(-45deg);
 }
 
 .popupDiscription-content span {
-	display: block;
-	width: 100%;
-	text-align: center;
-	padding: 4%;
-	font-weight: 800;
-	background-color: #00000075;
-	color: #ffffff;
-	text-transform: uppercase;
-	letter-spacing: 0.1em;
-	font-size: 25px;
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 4%;
+    font-weight: 800;
+    background-color: #00000075;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 25px;
 }

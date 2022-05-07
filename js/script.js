@@ -1,39 +1,38 @@
-const body = document.querySelector('body');
-const mainContent = document.querySelector('.mainContent');
+const body = document.querySelector("body");
+const mainContent = document.querySelector(".mainContent");
 const formWrapper = document.querySelector(".formWrapper");
 const formBody = document.querySelector(".form__body");
-const customSelectOptions = document.querySelector('.customSelect__options');
-const optionsCollection = customSelectOptions.querySelectorAll('li');
-const selectWindow = document.querySelector('.customSelect__window');
-const selectWindowText = selectWindow.querySelector('span');
-const checkboxLabel = formBody.querySelector('.checkbox__label');
-const checkboxInput = formBody.querySelector('.checkbox__input');
-const li_list = customSelectOptions.querySelectorAll('li');
-const li_1st = customSelectOptions.querySelector('li:nth-child(1)');
-const showFormButton = document.querySelector('.showForm_button');
-const closeFormButton = formBody.querySelector('.closeForm-button');
+const customSelectOptions = document.querySelector(".customSelect__options");
+const optionsCollection = customSelectOptions.querySelectorAll("li");
+const selectWindow = document.querySelector(".customSelect__window");
+const selectWindowText = selectWindow.querySelector("span");
+const checkboxLabel = formBody.querySelector(".checkbox__label");
+const checkboxInput = formBody.querySelector(".checkbox__input");
+const li_list = customSelectOptions.querySelectorAll("li");
+const li_1st = customSelectOptions.querySelector("li:nth-child(1)");
+const showFormButton = document.querySelector(".showForm_button");
+const closeFormButton = formBody.querySelector(".closeForm-button");
 
 body.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
+    behavior: "smooth",
+    block: "start",
 });
 
 showFormButton.addEventListener("click", showForm);
 
-function showForm(){
+function showForm() {
     let bodyScrollBarWidth = window.innerWidth - body.clientWidth;
     body.style.paddingRight = parseInt(getComputedStyle(mainContent).paddingRight) + bodyScrollBarWidth + "px";
     body.classList.add("body-freezed");
     mainContent.classList.add("mainContent-freezed");
-    formWrapper.classList.add("formWrapper-active"); 
+    formWrapper.classList.add("formWrapper-active");
 }
 
 formWrapper.addEventListener("click", hideForm);
 closeFormButton.addEventListener("click", hideForm);
 
-function hideForm(event){  
-    
-    if ((!event.target.closest(".form__body")) || (event.target.closest(".closeForm-button"))){      
+function hideForm(event) {
+    if (!event.target.closest(".form__body") || event.target.closest(".closeForm-button")) {
         body.classList.remove("body-freezed");
         mainContent.style.paddingRight = "";
         mainContent.classList.remove("mainContent-freezed");
@@ -41,31 +40,31 @@ function hideForm(event){
         formBody.classList.remove("formBody-active");
         formBody.classList.add("formBody-deactivation");
         body.style.paddingRight = "";
-        setTimeout(()=>{
+        setTimeout(() => {
             formBody.classList.remove("formBody-deactivation");
-        },800);      
+        }, 800);
     }
 }
 
 formBody.addEventListener("submit", formSend);
-function formSend (event){
+function formSend(event) {
     event.preventDefault();
-    alert('Действие по умолчанию отменено!');
+    alert("Действие по умолчанию отменено!");
 }
 
 formBody.addEventListener("click", formZoomer);
-function formZoomer(event){  
+function formZoomer(event) {
     formBody.classList.add("formBody-active");
 }
 
-const optionsLabels = document.querySelectorAll('.options__label');
+const optionsLabels = document.querySelectorAll(".options__label");
 optionsLabels.forEach((label) => {
     label.addEventListener("click", checker);
     label.addEventListener("keypress", checker);
 });
 
-function checker (event){
-    if ((event.type == "keypress") && (!(event.code == "Space" || event.code == "Enter"))) return;
+function checker(event) {
+    if (event.type == "keypress" && !(event.code == "Space" || event.code == "Enter")) return;
     event.target.previousElementSibling.checked = true;
 }
 
@@ -129,62 +128,56 @@ function selectorLi(event) {
 }
 
 customSelectOptions.addEventListener("click", optChecker);
-function optChecker(event){
-    let elem = event.target;  
-    if (elem.tagName != 'LI'){
+function optChecker(event) {
+    let elem = event.target;
+    if (elem.tagName != "LI") {
         return;
     }
-    optionsCollection.forEach((el)=>{
-        el.classList.remove('selected');
+    optionsCollection.forEach((el) => {
+        el.classList.remove("selected");
         el.tabIndex = "-1";
     });
-    elem.classList.add('selected');
-    selectWindow.querySelector('span').textContent = elem.textContent;
+    elem.classList.add("selected");
+    selectWindow.querySelector("span").textContent = elem.textContent;
     selectWindow.dataset.value = elem.dataset.value;
-    elem.blur();  
+    elem.blur();
     customSelectOptions.classList.remove("customSelect__options-opened");
 }
 
-
-const fileInput = document.querySelector('.file__input');
-const filePreview = document.querySelector('.file__preview');
+const fileInput = document.querySelector(".file__input");
+const filePreview = document.querySelector(".file__preview");
 fileInput.addEventListener("change", uploadFile);
 function uploadFile(event) {
-    let file  = this.files[0];
-    if(!["image/jpeg", "image/png", "image/gif"].includes(file.type)){
+    let file = this.files[0];
+    if (!["image/jpeg", "image/png", "image/gif"].includes(file.type)) {
         alert("Разрешены только изображения!");
         this.value = "";
-        return
+        return;
     }
-    if (file.size > 20*1024*1024){
+    if (file.size > 20 * 1024 * 1024) {
         alert("Файл должен быть не более 20Мb!");
         this.value = "";
-        return
+        return;
     }
-    let reader = new FileReader ();
-    reader.onload = (event)=>{            
+    let reader = new FileReader();
+    reader.onload = (event) => {
         filePreview.innerHTML = `<img src="${event.currentTarget.result}" alt="Фото">`;
-    }
-    reader.onerror = (er)=>{
+    };
+    reader.onerror = (er) => {
         alert("Ошибка!");
-    }
+    };
     reader.readAsDataURL(file);
 }
 
 checkboxLabel.addEventListener("keypress", agrementChecker);
-function agrementChecker (event) {
-    if ((event.code == "Space" || event.code == "Enter")){
-        checkboxInput.checked = !checkboxInput.checked;    
+function agrementChecker(event) {
+    if (event.code == "Space" || event.code == "Enter") {
+        checkboxInput.checked = !checkboxInput.checked;
     }
 }
 
-
-
-
-
 const popupDiscription_container = document.querySelector(".popupDiscription-container");
 const popupDiscription_content = document.querySelector(".popupDiscription-content");
-// const mainContent = document.querySelector(".mainContent");
 
 function discriptionUp() {
     popupDiscription_container.classList.add("popupDiscription-container-active");
@@ -198,5 +191,3 @@ function discriptionDown() {
 }
 
 discriptionUp();
-
-
