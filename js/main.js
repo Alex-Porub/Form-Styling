@@ -179,6 +179,5 @@ function agrementChecker(event) {
 import popupClass from "/js/modules/module-popup.js";
 
 let popupDiscription = new popupClass (".popupDiscription-container", ".popupDiscription-content", ".mainContent");
-console.log (popupDiscription);
 
 window.onload = popupDiscription.up.bind(popupDiscription);
