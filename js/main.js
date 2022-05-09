@@ -23,9 +23,9 @@ showFormButton.addEventListener("click", showForm);
 function showForm() {
     let bodyScrollBarWidth = window.innerWidth - body.clientWidth;
     body.style.paddingRight = parseInt(getComputedStyle(mainContent).paddingRight) + bodyScrollBarWidth + "px";
-    body.classList.add("body-freezed");
-    mainContent.classList.add("mainContent-freezed");
-    formWrapper.classList.add("formWrapper-active");
+    body.classList.add("freezed");
+    mainContent.classList.add("freezed");
+    formWrapper.classList.add("active");
 }
 
 formWrapper.addEventListener("click", hideForm);
@@ -33,15 +33,15 @@ closeFormButton.addEventListener("click", hideForm);
 
 function hideForm(event) {
     if (!event.target.closest(".form__body") || event.target.closest(".closeForm-button")) {
-        body.classList.remove("body-freezed");
+        body.classList.remove("freezed");
         mainContent.style.paddingRight = "";
-        mainContent.classList.remove("mainContent-freezed");
-        formWrapper.classList.remove("formWrapper-active");
-        formBody.classList.remove("formBody-active");
-        formBody.classList.add("formBody-deactivation");
+        mainContent.classList.remove("freezed");
+        formWrapper.classList.remove("active");
+        formBody.classList.remove("active");
+        formBody.classList.add("deactivation");
         body.style.paddingRight = "";
         setTimeout(() => {
-            formBody.classList.remove("formBody-deactivation");
+            formBody.classList.remove("deactivation");
         }, 800);
     }
 }
@@ -54,7 +54,7 @@ function formSend(event) {
 
 formBody.addEventListener("click", formZoomer);
 function formZoomer(event) {
-    formBody.classList.add("formBody-active");
+    formBody.classList.add("active");
 }
 
 const optionsLabels = document.querySelectorAll(".options__label");
@@ -98,7 +98,7 @@ function selectorLi(event) {
         } else {
             currentEl.tabIndex = 0;
             li_1st.focus();
-            selectWindowText.innerHTML = 'Перемещайтесь стрелками ↓↑, "ПРОБЕЛ"-выбрать';
+            selectWindowText.innerHTML = 'control - ↓↑,     select - "SPACE"';
         }
         document.activeElement.scrollIntoView({
             behavior: "smooth",
@@ -176,18 +176,9 @@ function agrementChecker(event) {
     }
 }
 
-const popupDiscription_container = document.querySelector(".popupDiscription-container");
-const popupDiscription_content = document.querySelector(".popupDiscription-content");
+import popupClass from "/js/modules/module-popup.js";
 
-function discriptionUp() {
-    popupDiscription_container.classList.add("popupDiscription-container-active");
-    popupDiscription_container.addEventListener("click", discriptionDown, { once: true });
-    mainContent.classList.add("mainContent-freezed");
-}
+let popupDiscription = new popupClass (".popupDiscription-container", ".popupDiscription-content", ".mainContent");
+console.log (popupDiscription);
 
-function discriptionDown() {
-    popupDiscription_container.classList.remove("popupDiscription-container-active");
-    mainContent.classList.remove("mainContent-freezed");
-}
-
-discriptionUp();
+window.onload = popupDiscription.up.bind(popupDiscription);
